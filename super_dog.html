@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>dog</title>
+    <style>
+    body, html, .center-inner, .center-outer { 
+  height: 100%; 
+}
+
+@font-face {
+	font-family: "8bitoperator";
+	src: url( "8bitoperator.ttf" );
+}
+
+body {
+  color: white;
+  background-color: black;
+  font-family: "8bitoperator", monospace;
+  margin: 0;
+}
+
+
+.clicked { 
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.clicked { 
+  transform:rotate(15deg); -webkit-transform:rotate(15deg); -moz-transform:rotate(15deg); -o-transform:rotate(15deg);
+}
+
+#pets {
+  font-size: 32px;
+}
+
+@keyframes YELLING {
+  0% { font-size: 3em; }
+  50% { font-size: 4em; }
+  100% { font-size: 3em; }
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+#yelling {
+  height: 100px;
+  font-size: 4em;
+  animation-name: YELLING;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+#dog_div {
+  margin-top: 100px;
+}
+
+#dog {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+}
+
+#contactinfo {
+  color: #3d3d3d;
+  position: absolute;
+  font-size: 12px;
+  bottom: 1%;
+  right: 3%;
+}
+
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+.center-outer {
+	display: table;
+	margin: auto;
+}
+
+.center-inner {
+	display: table-cell;
+	vertical-align: middle;
+  text-align: center;
+}
+	</style>
+  </head>
+  <body>
+    <audio src="mus_dogsong.ogg" autoplay loop></audio>
+    <div class="center-outer">
+      <div class="center-inner">
+        <div id="YELLING">
+        PET THE DOG!!!!!!!!!!!!!!!!!!!!!!!!
+        </div>
+        <div>
+          <p id="pets">PETS: <span id="petcount"></span></p>
+        </div>
+        <div id="dog_div">
+          <img id="dog" src="dog_l.png"></img>
+        </div>
+      </div>
+    </div>
+	<div id="contactinfo">
+		<p>protip: use the keyboard</p>
+	</div>
+		
+    <script>
+    dog_site = {};
+
+dog_site.init = function() {
+  dog_site.dog = document.getElementById("dog");
+  dog_site.pet_count = document.getElementById("petcount");
+  dog_site.pets = 0;
+  document.addEventListener("keydown", dog_site.mousedown);
+  document.addEventListener("keyup", dog_site.mouseup);
+  document.addEventListener("mousedown", dog_site.mousedown);
+  document.addEventListener("mouseup", dog_site.mouseup);
+  dog_site.loop();
+}
+
+dog_site.mousedown = function() {
+  dog_site.dog.src = "dog_happy_l.png";
+  dog_site.pets++;
+  if (dog_site.pets < 10) {
+    dog_site.dog.className += " clicked";
+  }  
+  dog_site.pet_count.className += " clicked";
+}
+
+dog_site.mouseup = function() {
+  dog_site.dog.src = "dog_l.png";
+  dog_site.dog.className -= " clicked";
+  dog_site.pet_count.className -= " clicked";
+}
+
+dog_site.loop = function() {
+  dog_site.pet_count.innerHTML = dog_site.pets;
+  setTimeout(dog_site.loop, 1000 / 60);
+  
+  if (dog_site.pets > 10) {
+    dog_site.dog.style.animation = "spin " + 50 / dog_site.pets + "s linear infinite";
+  }
+}
+
+window.onload = function() {
+  dog_site.init();
+}
+    </script>
+  </body>
+</html>
