@@ -12,7 +12,7 @@ dog_site.init = function() {
 }
 
 dog_site.mousedown = function() {
-  dog_site.dog.src = "dog_happy_l.png";
+  dog_site.dog.src = "profile.jpg";
   dog_site.pets++;
   if (dog_site.pets < 10) {
     dog_site.dog.className += " clicked";
@@ -21,7 +21,7 @@ dog_site.mousedown = function() {
 }
 
 dog_site.mouseup = function() {
-  dog_site.dog.src = "dog_l.png";
+  dog_site.dog.src = "profile.jpg";
   dog_site.dog.className -= " clicked";
   dog_site.pet_count.className -= " clicked";
 }
